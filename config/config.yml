@@ -1,0 +1,45 @@
+---
+location:
+  city: ChangChun
+  country: China
+  timezone: Asia/Shanghai
+  longitude: 125.35
+  latitude: 43.8833
+
+themes:
+  - gnome_theme
+  - gnome_cursor
+  - gnome_shell
+  - gnome_terminal
+  - vscode_theme
+  # - vim_theme
+  - spaceVim_theme
+
+gnome:
+  theme:
+    light: Mojave-light
+    night: Mojave-dark
+  cursor:
+    light: capitaine-cursors
+    night: capitaine-cursors-light
+  shell:
+    light: Mojave-light
+    night: Mojave-dark
+  terminal:
+    light: 2e064c23-220a-4ec6-9b1e-d8d0f51351de
+    night: a098cf48-224b-4aee-b4ce-a02700d0b7d8
+
+vscode:
+  theme:
+    light: GitHub Light
+    night: GitHub Dark
+# ---
+# vim:
+#   theme:
+#     light: light
+#     night: dark
+
+spaceVim:
+  - theme:
+    - light: light
+    - night: dark
