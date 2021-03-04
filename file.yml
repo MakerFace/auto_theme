@@ -1,0 +1,39 @@
+---
+themes:
+  - gnome_theme
+  - gnome_cursor
+  - gnome_shell
+  - gnome_terminal
+  - vscode_theme
+  # - vim_theme
+  - spaceVim_theme
+---
+gnome:
+  - theme:
+    - light: Mojave-light
+    - night: Mojave-night
+  - cursor:
+    - light: Capitaine-cursors
+    - night: Capitaine-cursors-light
+  - shell:
+    - light: Mojave-light
+    - night: Mojave-night
+  - terminal:
+    - light: 2e064c23-220a-4ec6-9b1e-d8d0f51351de
+    - night: a098cf48-224b-4aee-b4ce-a02700d0b7d8
+---
+vscode:
+  theme:
+    light: GitHub Light
+    night: GitHub Night
+# ---
+# vim:
+#   theme:
+#     light: light
+#     night: dark
+
+---
+spaceVim:
+  - theme:
+    - light: light
+    - night: dark
