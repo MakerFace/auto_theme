@@ -65,7 +65,7 @@ function set_vim() {
 function update_time() {
     date_time=$(python ./utils/date_time.py)
     crontab -l >/tmp/crontab.bak
-    python ./utils/change_crontab.py $date_time
+    python3 ./utils/change_crontab.py $date_time
     crontab /tmp/crontab.bak
     echo "update sunrise and sunset $date_time (minute:hour)"
     echo "-------finished-------"
