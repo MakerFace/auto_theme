@@ -32,10 +32,10 @@ workspace=$(
 cd $workspace
 
 function set_gnome() {
-    theme=$(python gnome/lightdark.py $1 theme)
-    cursor=$(python gnome/lightdark.py $1 cursor)
-    terminal=$(python gnome/lightdark.py $1 terminal)
-    shell=$(python gnome/lightdark.py $1 shell)
+    theme=$(python3 gnome/lightdark.py $1 theme)
+    cursor=$(python3 gnome/lightdark.py $1 cursor)
+    terminal=$(python3 gnome/lightdark.py $1 terminal)
+    shell=$(python3 gnome/lightdark.py $1 shell)
 
     echo 'gnome setting'
     gsettings set org.gnome.desktop.interface gtk-theme "$theme"
@@ -51,7 +51,7 @@ function set_gnome() {
 
 function set_vscode() {
     # . ./vscode/lightdark.sh
-    res=$(python vscode/lightdark.py "$1")
+    res=$(python3 vscode/lightdark.py "$1")
     echo "setting vscode theme" $res
     echo "----------------------"
 }
@@ -63,9 +63,9 @@ function set_vim() {
 }
 
 function update_time() {
-    date_time=$(python ./utils/date_time.py)
+    date_time=$(python3 ./utils/date_time.py)
     crontab -l >/tmp/crontab.bak
-    python ./utils/change_crontab.py $date_time
+    python3 ./utils/change_crontab.py $date_time
     crontab /tmp/crontab.bak
     echo "update sunrise and sunset $date_time (minute:hour)"
     echo "-------finished-------"
