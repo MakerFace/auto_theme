@@ -130,6 +130,7 @@ dmypy.json
 
 *.code-workspace
 
+test.py
 test.sh
 
 .vscode

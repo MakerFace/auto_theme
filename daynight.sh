@@ -10,17 +10,17 @@ function get_dbus() {
         fi
     done
     if [[ "${PID}" == "" ]]; then
-        echo "Could not detect active login session"
+        $(logout "Could not detect active login session")
         return 1
     fi
 
     QUERY_ENVIRON="$(tr '\0' '\n' </proc/${PID}/environ | grep "DBUS_SESSION_BUS_ADDRESS" | cut -d "=" -f 2-)"
     if [[ "${QUERY_ENVIRON}" != "" ]]; then
         export DBUS_SESSION_BUS_ADDRESS="${QUERY_ENVIRON}"
-        echo "Connected to session:"
-        echo "DBUS_SESSION_BUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS}"
+        $(logout "Connected to session:")
+        $(logout "DBUS_SESSION_BUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS}")
     else
-        echo "Could not find dbus session ID in user environment."
+        $(logout "Could not find dbus session ID in user environment.")
         return 1
     fi
 }
@@ -31,48 +31,67 @@ workspace=$(
 )
 cd $workspace
 
-function set_gnome() {
+function logout() {
+    echo $1 >>test.log
+}
+
+function gnome() {
     theme=$(python3 gnome/lightdark.py $1 theme)
     cursor=$(python3 gnome/lightdark.py $1 cursor)
     terminal=$(python3 gnome/lightdark.py $1 terminal)
     shell=$(python3 gnome/lightdark.py $1 shell)
 
-    echo 'gnome setting'
+    $(logout 'gnome setting')
     gsettings set org.gnome.desktop.interface gtk-theme "$theme"
-    echo "setting gtk-theme $theme"
+    $(logout "setting gtk-theme $theme")
     gsettings set org.gnome.desktop.interface cursor-theme "$cursor"
-    echo "setting cursor-theme $cursor"
+    $(logout "setting cursor-theme $cursor")
     gsettings set org.gnome.shell.extensions.user-theme name "$shell"
-    echo "setting shell-theme $shell"
+    $(logout "setting shell-theme $shell")
     gsettings set org.gnome.Terminal.ProfilesList default "$terminal"
-    echo "setting terminal-theme $terminal"
-    echo "----------------------"
+    $(logout "setting terminal-theme $terminal")
+    $(logout "----------------------")
 }
 
-function set_vscode() {
-    # . ./vscode/lightdark.sh
+function vscode() {
     res=$(python3 vscode/lightdark.py "$1")
-    echo "setting vscode theme" $res
-    echo "----------------------"
+    $(logout "setting vscode theme $res")
+    $(logout "----------------------")
 }
 
-function set_vim() {
-    . ./vim/lightdark.sh
-    echo "setting vim theme"
-    echo "----------------------"
+function vim() {
+    . vim/lightdark.sh
+    $(logout "setting vim theme")
+    $(logout "----------------------")
+}
+
+function spaceVim() {
+    :
 }
 
 function update_time() {
-    date_time=$(python3 ./utils/date_time.py)
+    date_time=$(python3 utils/date_time.py)
     crontab -l >/tmp/crontab.bak
-    python3 ./utils/change_crontab.py $date_time
+    python3 utils/change_crontab.py $date_time
     crontab /tmp/crontab.bak
-    echo "update sunrise and sunset $date_time (minute:hour)"
-    echo "-------finished-------"
+    $(logout "update sunrise and sunset $date_time (minute:hour)")
+}
+
+function split_string() {
+    old_ifs=$IFS
+    IFS=,
+    arr=$1
+    echo ${arr[@]}
+    IFS=$old_ifs
 }
 
 get_dbus
-set_gnome $1
-set_vscode $1
-# set_vim $1
-update_time
+
+set_themes=$(python3 utils/get_themes.py)
+set_themes=$(split_string $set_themes)
+for set in $set_themes; do
+    $(logout "set $set $1")
+    $($set $1)
+done
+
+$(logout "-------finished-------")

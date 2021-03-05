@@ -1,8 +1,8 @@
 # auto-switch theme
 
-## python requirement
+## python3 requirement
 
-1. Astral
+1. Astral 2.2
 
 ## shell requirement
 

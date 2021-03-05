@@ -7,13 +7,11 @@ location:
   latitude: 43.8833
 
 themes:
-  - gnome_theme
-  - gnome_cursor
-  - gnome_shell
-  - gnome_terminal
-  - vscode_theme
-  # - vim_theme
-  - spaceVim_theme
+  - gnome
+  - vscode
+  # - vim
+  - spaceVim
+  - update_time
 
 gnome:
   theme:

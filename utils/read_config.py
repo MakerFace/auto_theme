@@ -10,6 +10,9 @@ def open_yaml():
         res = yaml.safe_load(file)
         return res
 
+def get_themes():
+    return open_yaml()['themes']
+
 def get_vscode():
     return open_yaml()['vscode']
 
