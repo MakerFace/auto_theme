@@ -5,6 +5,9 @@ sys.path.append('.')
 from utils import read_config
 
 class gnome:
+    '''
+    param @ld light or dark
+    '''
     def theme(self, ld):
         print(read_config.get_gnome()['theme'][ld])
 
@@ -13,6 +16,9 @@ class gnome:
 
     def terminal(self, ld):
         print(read_config.get_gnome()['terminal'][ld])
+
+    def shell(self, ld):
+        print(read_config.get_gnome()['shell'][ld])
 
 if __name__ == '__main__':
     obj = gnome()
