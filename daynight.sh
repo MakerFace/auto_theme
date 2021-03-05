@@ -35,12 +35,15 @@ function set_gnome() {
     theme=$(python gnome/lightdark.py $1 theme)
     cursor=$(python gnome/lightdark.py $1 cursor)
     terminal=$(python gnome/lightdark.py $1 terminal)
+    shell=$(python gnome/lightdark.py $1 shell)
 
     echo 'gnome setting'
     gsettings set org.gnome.desktop.interface gtk-theme "$theme"
     echo "setting gtk-theme $theme"
     gsettings set org.gnome.desktop.interface cursor-theme "$cursor"
     echo "setting cursor-theme $cursor"
+    gsettings set org.gnome.shell.extensions.user-theme name "$shell"
+    echo "setting shell-theme $shell"
     gsettings set org.gnome.Terminal.ProfilesList default "$terminal"
     echo "setting terminal-theme $terminal"
     echo "----------------------"
