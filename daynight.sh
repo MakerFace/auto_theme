@@ -32,14 +32,18 @@ workspace=$(
 cd $workspace
 
 function logout() {
-    echo $1 >>test.log
+    echo $1 >>daynight.log
+}
+
+function executor() {
+    $1 |& tee -a daynight.log
 }
 
 function gnome() {
-    theme=$(python3 gnome/lightdark.py $1 theme)
-    cursor=$(python3 gnome/lightdark.py $1 cursor)
-    terminal=$(python3 gnome/lightdark.py $1 terminal)
-    shell=$(python3 gnome/lightdark.py $1 shell)
+    theme=$(executor "python3 utils/read_config.py gnome theme $1")
+    cursor=$(executor "python3 utils/read_config.py gnome cursor $1")
+    terminal=$(executor "python3 utils/read_config.py gnome terminal $1")
+    shell=$(executor "python3 utils/read_config.py gnome shell $1")
 
     $(logout 'gnome setting')
     gsettings set org.gnome.desktop.interface gtk-theme "$theme"
@@ -54,25 +58,27 @@ function gnome() {
 }
 
 function vscode() {
-    res=$(python3 vscode/lightdark.py "$1")
+    res=$(executor "python3 vscode/lightdark.py vscode theme $1")
     $(logout "setting vscode theme $res")
     $(logout "----------------------")
 }
 
 function vim() {
-    . vim/lightdark.sh
+    $(executor "python utils/change_config.py vim theme $1")
     $(logout "setting vim theme")
     $(logout "----------------------")
 }
 
 function spaceVim() {
-    :
+    $(executor "python utils/change_config.py spaceVim theme $1")
+    $(logout "setting spaceVim theme")
+    $(logout "----------------------")
 }
 
 function update_time() {
-    date_time=$(python3 utils/date_time.py)
+    date_time=$(executor "python3 utils/date_time.py")
     crontab -l >/tmp/crontab.bak
-    python3 utils/change_crontab.py $date_time
+    $(executor "python3 utils/change_crontab.py $date_time")
     crontab /tmp/crontab.bak
     $(logout "update sunrise and sunset $date_time (minute:hour)")
 }
@@ -85,10 +91,11 @@ function split_string() {
     IFS=$old_ifs
 }
 
+echo '--------begin--------' > daynight.log
 get_dbus
 
-set_themes=$(python3 utils/get_themes.py)
-set_themes=$(split_string $set_themes)
+set_themes=$(executor "python3 utils/get_themes.py")
+set_themes=$(executor "split_string $set_themes")
 for set in $set_themes; do
     $(logout "set $set $1")
     $($set $1)
