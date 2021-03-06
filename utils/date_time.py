@@ -4,10 +4,10 @@ import datetime
 from os import name
 from astral import LocationInfo
 from astral.sun import sun
-import read_config as rc
+from read_config import ReadConfig
 
 def get_suntime():
-    location = rc.get_location()
+    location = ReadConfig('location').get()
     city = LocationInfo(name=location['city'],
                         region=location['country'],
                         timezone=location['timezone'],
