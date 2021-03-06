@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import change_config
 
 def change_crontab():
     with open('/tmp/crontab.bak') as crontab:

@@ -2,14 +2,12 @@
 
 import sys
 sys.path.append('.')
-from utils import read_config
+from utils.read_config import ReadConfig
 
 def get_themes():
-    res = read_config.open_yaml()['themes']
-    str = ""
-    for r in res:
-        str += r + ','
-    print(str)
+    res = ReadConfig("themes")
+    res = res.list_to_shell_array(res.get())
+    print(res)
 
 if __name__ == '__main__':
     get_themes()
