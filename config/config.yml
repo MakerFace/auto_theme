@@ -6,6 +6,9 @@ location:
   longitude: 125.35
   latitude: 43.8833
 
+# 在themes中注释后将不自动切换
+# Will not switch automatically
+# after commenting in themes
 themes:
   - gnome
   - vscode
@@ -28,16 +31,24 @@ gnome:
     night: a098cf48-224b-4aee-b4ce-a02700d0b7d8
 
 vscode:
+  path: ".config/Code/User/settings.json"
+  key_word: workbench.colorTheme
   theme:
     light: GitHub Light
     night: GitHub Dark
-# ---
-# vim:
-#   theme:
-#     light: light
-#     night: dark
 
+vim:
+  path: ".vimrc"
+  key_word: set background
+  theme:
+    light: light
+    night: dark
+
+# 字符串包含特殊字符
+# string include special chars
 spaceVim:
-  - theme:
-    - light: light
-    - night: dark
+  path: ".SpaceVim.d/init.toml"
+  key_word: colorscheme_bg
+  theme:
+    light: " \"light\""
+    night: " \"dark\""
