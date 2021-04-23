@@ -24,8 +24,8 @@ gnome:
     light: capitaine-cursors
     night: capitaine-cursors-light
   shell:
-    light: Mojave-light
-    night: Mojave-dark
+    light: WhiteSur-light
+    night: WhiteSur-dark
   terminal:
     light: 2e064c23-220a-4ec6-9b1e-d8d0f51351de
     night: a098cf48-224b-4aee-b4ce-a02700d0b7d8
@@ -34,8 +34,10 @@ vscode:
   path: ".config/Code/User/settings.json"
   key_word: workbench.colorTheme
   theme:
-    light: GitHub Light
-    night: GitHub Dark
+    # light: GitHub Light
+    light: Atom One Light
+    # night: GitHub Dark
+    night: Atom One Dark
 
 vim:
   path: ".vimrc"

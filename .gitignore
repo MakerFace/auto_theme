@@ -135,4 +135,5 @@ test.sh
 
 .vscode
 
-bash-yaml
+.init
+*.bak
