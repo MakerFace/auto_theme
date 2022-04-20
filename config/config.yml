@@ -13,13 +13,13 @@ themes:
   - gnome
   - vscode
   # - vim
-  - spaceVim
+  # - spaceVim
   - update_time
 
 gnome:
   theme:
-    light: Mojave-light
-    night: Mojave-dark
+    light: WhiteSur-light
+    night: WhiteSur-dark
   cursor:
     light: capitaine-cursors
     night: capitaine-cursors-light
@@ -27,8 +27,8 @@ gnome:
     light: WhiteSur-light
     night: WhiteSur-dark
   terminal:
-    light: 2e064c23-220a-4ec6-9b1e-d8d0f51351de
-    night: a098cf48-224b-4aee-b4ce-a02700d0b7d8
+    light: 658cb017-3421-4c58-88e3-08c4ef6c7c8a
+    night: 6e18f627-29e8-4764-a002-efee8f2fec6f
 
 vscode:
   path: ".config/Code/User/settings.json"
