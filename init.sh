@@ -23,8 +23,8 @@ for dt in $date_time; do
     i=$((i + 1))
 done
 
-printf "%d %d * * * bash $PWD/daynight.sh %s > $PWD/daynight.log 2>&1\n" ${times[0]} ${times[1]} ${themes[0]} >>./crontab.bak
-printf "%d %d * * * bash $PWD/daynight.sh %s > $PWD/daynight.log 2>&1\n" ${times[2]} ${times[3]} ${themes[1]} >>./crontab.bak
+printf "%d %d * * * bash $PWD/daynight.sh %s > $PWD/daynight.log 2>&1\n" ${times[0]} ${times[1]} ${themes[1]} >>./crontab.bak
+printf "%d %d * * * bash $PWD/daynight.sh %s > $PWD/daynight.log 2>&1\n" ${times[2]} ${times[3]} ${themes[2]} >>./crontab.bak
 
 crontab ./crontab.bak
 check_failed $?
