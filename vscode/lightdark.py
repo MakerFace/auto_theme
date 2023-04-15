@@ -1,4 +1,4 @@
-#!/usr/bib/env python3
+#!/usr/bin/env python3
 import json
 import sys
 import os
