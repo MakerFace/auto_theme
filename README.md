@@ -12,3 +12,7 @@
     ```shell
     bash gnome/fix_user_theme.sh
     ```
+2. init
+   ```shell
+   bash init.sh
+   ```
