@@ -65,6 +65,9 @@ function gnome() {
 
     $(logout 'gnome setting')
 
+    gsettings set org.gnome.desktop.interface color-scheme "prefer-$1"
+    $(logout "setting color-scheme prefer-$1")
+
     gsettings set org.gnome.desktop.interface gtk-theme "$theme"
     $(logout "setting gtk-theme $theme")
 
@@ -73,9 +76,6 @@ function gnome() {
 
     gsettings set org.gnome.shell.extensions.user-theme name "$shell"
     $(logout "setting shell-theme $shell")
-
-    gsettings set org.gnome.desktop.interface color-scheme "prefer-$1"
-    $(logout "setting color-scheme prefer-$1")
 
     gsettings set org.gnome.Terminal.ProfilesList default "$terminal"
     $(logout "setting terminal-theme $terminal")
