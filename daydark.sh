@@ -37,28 +37,56 @@ if [ ! -f .init ]; then
     $(bash init.sh)
 fi
 function logout() {
-    echo $1 >>daynight.log
+    echo $1 >>daydark.log
 }
 
 function executor() {
-    $1 | tee -a daynight.log
+    $1 | tee -a daydark.log
+}
+
+function get_ubuntu() {
+    version=$(lsb_release -a | awk '{print $2}'|head -n4 |tail -n1)
+    if [ $version == '22.04' ]; then
+        return 2;
+    else
+        return 0;
+    fi
 }
 
 function gnome() {
+    # TODO add color-scheme on Ubuntu22.04
+    
+    # gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
+    # gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
     theme=$(executor "python3 utils/read_config.py gnome theme $1")
     cursor=$(executor "python3 utils/read_config.py gnome cursor $1")
     terminal=$(executor "python3 utils/read_config.py gnome terminal $1")
     shell=$(executor "python3 utils/read_config.py gnome shell $1")
 
     $(logout 'gnome setting')
+
     gsettings set org.gnome.desktop.interface gtk-theme "$theme"
     $(logout "setting gtk-theme $theme")
+
     gsettings set org.gnome.desktop.interface cursor-theme "$cursor"
     $(logout "setting cursor-theme $cursor")
+
     gsettings set org.gnome.shell.extensions.user-theme name "$shell"
     $(logout "setting shell-theme $shell")
+
+    gsettings set org.gnome.desktop.interface color-scheme "prefer-$1"
+    $(logout "setting color-scheme prefer-$1")
+
     gsettings set org.gnome.Terminal.ProfilesList default "$terminal"
     $(logout "setting terminal-theme $terminal")
+
+    $(logout "----------------------")
+}
+
+function terminator() {
+    # FIXME 必须关闭所有的终端才生效
+    res=$(executor "python3 terminator/lightdark.py terminator theme $1")
+    $(logout "setting terminator theme $res")
     $(logout "----------------------")
 }
 
@@ -96,7 +124,7 @@ function split_string() {
     IFS=$old_ifs
 }
 
-echo '--------begin--------' >daynight.log
+echo '--------begin--------' >daydark.log
 get_dbus
 
 set_themes=$(executor "python3 utils/get_themes.py")

@@ -11,14 +11,14 @@ def change_crontab():
                 light = lines[i].split(' ')
                 lines[i] = lines[i].replace(light[0], light_time[0], 1)
                 lines[i] = lines[i].replace(light[1], light_time[1], 1)                
-            elif lines[i].find("night") != -1:
+            elif lines[i].find("dark") != -1:
                 light = lines[i].split(' ')
-                lines[i] = lines[i].replace(light[0], night_time[0], 1)
-                lines[i] = lines[i].replace(light[1], night_time[1], 1)
+                lines[i] = lines[i].replace(light[0], dark_time[0], 1)
+                lines[i] = lines[i].replace(light[1], dark_time[1], 1)
     with open('/tmp/crontab.bak', 'w') as crontab:
         crontab.writelines(lines)
 
 if __name__ == '__main__':
     light_time = [sys.argv[1], sys.argv[2]]
-    night_time = [sys.argv[3], sys.argv[4]]
+    dark_time = [sys.argv[3], sys.argv[4]]
     change_crontab()
