@@ -45,19 +45,15 @@ function executor() {
 }
 
 function get_ubuntu() {
-    version=$(lsb_release -a | awk '{print $2}'|head -n4 |tail -n1)
+    version=$(lsb_release -a | awk '{print $2}' | head -n4 | tail -n1)
     if [ $version == '22.04' ]; then
-        return 2;
+        return 2
     else
-        return 0;
+        return 0
     fi
 }
 
 function gnome() {
-    # TODO add color-scheme on Ubuntu22.04
-    
-    # gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
-    # gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
     theme=$(executor "python3 utils/read_config.py gnome theme $1")
     cursor=$(executor "python3 utils/read_config.py gnome cursor $1")
     terminal=$(executor "python3 utils/read_config.py gnome terminal $1")
@@ -65,8 +61,15 @@ function gnome() {
 
     $(logout 'gnome setting')
 
-    gsettings set org.gnome.desktop.interface color-scheme "prefer-$1"
-    $(logout "setting color-scheme prefer-$1")
+    get_ubuntu
+    if [ $? -eq 0 ]; then # 20.04
+        gsettings set org.gnome.desktop.interface gtk-color-scheme "prefer-$1"
+        $(logout "setting gtk-color-scheme prefer-$1")
+    elif [ $? -eq 2 ]; then # 22.04
+        # TODO add color-scheme on Ubuntu22.04
+        gsettings set org.gnome.desktop.interface color-scheme "prefer-$1"
+        $(logout "setting color-scheme prefer-$1")
+    fi
 
     gsettings set org.gnome.desktop.interface gtk-theme "$theme"
     $(logout "setting gtk-theme $theme")
