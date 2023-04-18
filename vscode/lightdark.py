@@ -1,4 +1,4 @@
-#!/usr/bib/env python3
+#!/usr/bin/env python3
 import json
 import sys
 import os
@@ -24,7 +24,7 @@ def parseJson():
         set_json[key_word] = theme
 
     with open(setting_path, mode='w') as json_file:
-        json.dump(set_json, json_file)
+        json.dump(set_json, json_file, indent=2)
 
 if __name__ == '__main__':
     parseJson()

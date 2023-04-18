@@ -4,13 +4,14 @@ location:
   country: China
   timezone: Asia/Shanghai
   longitude: 125.35
-  latitude: 43.8833
+  latitude: 43.88
 
 # 在themes中注释后将不自动切换
 # Will not switch automatically
 # after commenting in themes
 themes:
   - gnome
+  - terminator
   - vscode
   # - vim
   - spaceVim
@@ -21,18 +22,25 @@ gnome:
     # light: Mojave-light
     # light: WhiteSur-light
     light: BigSur-light
-    # night: Mojave-dark
-    # night: WhiteSur-dark
-    night: BigSur-Dark
+    # dark: Mojave-dark
+    # dark: WhiteSur-dark
+    dark: BigSur-Dark
   cursor:
     light: capitaine-cursors
-    night: capitaine-cursors-light
+    dark: capitaine-cursors-light
   shell:
     light: WhiteSur-light-solid
-    night: WhiteSur-dark-solid
+    dark: WhiteSur-dark-solid
   terminal:
-    night: d033acf1-5947-48b4-93cd-b8a15a9af6b6
+    dark: d033acf1-5947-48b4-93cd-b8a15a9af6b6
     light: 2e87dce9-b00d-4ba2-b1ca-5a207845c298
+
+terminator:
+  path: ".config/terminator/config"
+  keyword: profile
+  theme:
+    light: solarized light
+    dark: solarized dark
 
 vscode:
   path: ".config/Code/User/settings.json"
@@ -40,15 +48,15 @@ vscode:
   theme:
     # light: GitHub Light
     light: Atom One Light
-    # night: GitHub Dark
-    night: Atom One Dark
+    # dark: GitHub Dark
+    dark: Atom One Dark
 
 vim:
   path: ".vimrc"
   key_word: set background
   theme:
     light: light
-    night: dark
+    dark: dark
 
 # 字符串包含特殊字符
 # string include special chars
@@ -57,4 +65,4 @@ spaceVim:
   key_word: colorscheme_bg
   theme:
     light: ' "light"'
-    night: ' "dark"'
+    dark: ' "dark"'
