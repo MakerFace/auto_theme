@@ -49,6 +49,10 @@ function gnome() {
     cursor=$(executor "python3 utils/read_config.py gnome cursor $1")
     terminal=$(executor "python3 utils/read_config.py gnome terminal $1")
     shell=$(executor "python3 utils/read_config.py gnome shell $1")
+    terminal_color="light"
+    if [ $1 = "night" ];then
+        terminal_color="dark"
+    fi
 
     $(logout 'gnome setting')
     gsettings set org.gnome.desktop.interface gtk-theme "$theme"
@@ -57,6 +61,7 @@ function gnome() {
     $(logout "setting cursor-theme $cursor")
     gsettings set org.gnome.shell.extensions.user-theme name "$shell"
     $(logout "setting shell-theme $shell")
+    gsettings set org.gnome.Terminal.Legacy.Settings theme-variant "$terminal_color"
     gsettings set org.gnome.Terminal.ProfilesList default "$terminal"
     $(logout "setting terminal-theme $terminal")
     $(logout "----------------------")

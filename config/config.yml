@@ -18,17 +18,21 @@ themes:
 
 gnome:
   theme:
-    light: Mojave-light
-    night: Mojave-dark
+    # light: Mojave-light
+    # light: WhiteSur-light
+    light: BigSur-light
+    # night: Mojave-dark
+    # night: WhiteSur-dark
+    night: BigSur-Dark
   cursor:
     light: capitaine-cursors
     night: capitaine-cursors-light
   shell:
-    light: WhiteSur-light
-    night: WhiteSur-dark
+    light: WhiteSur-light-solid
+    night: WhiteSur-dark-solid
   terminal:
-    light: 2e064c23-220a-4ec6-9b1e-d8d0f51351de
-    night: a098cf48-224b-4aee-b4ce-a02700d0b7d8
+    night: d033acf1-5947-48b4-93cd-b8a15a9af6b6
+    light: 2e87dce9-b00d-4ba2-b1ca-5a207845c298
 
 vscode:
   path: ".config/Code/User/settings.json"
@@ -52,5 +56,5 @@ spaceVim:
   path: ".SpaceVim.d/init.toml"
   key_word: colorscheme_bg
   theme:
-    light: " \"light\""
-    night: " \"dark\""
+    light: ' "light"'
+    night: ' "dark"'
