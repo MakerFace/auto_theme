@@ -35,20 +35,22 @@ workspace=$(
 )
 cd $workspace/..
 
+source "utils/log.sh"
+
 get_time
 ftime=$?
 get_theme
 ftheme=$?
 
-echo "time is $ftime, theme is $ftheme"
+$(logout "time is $ftime, theme is $ftheme")
 if [ "$ftime" == "$ftheme" ]; then
-    echo 'same theme'
+    $(logout 'same theme')
 else
     if [ "$ftime" == "0" ]; then
-        # echo 'change to light theme'
+        $(logout 'change to light theme')
         $PWD/daydark.sh light
     else
-        # echo 'change to dark theme'
+        $(logout 'change to dark theme')
         $PWD/daydark.sh dark
     fi
 fi

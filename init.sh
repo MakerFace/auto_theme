@@ -27,5 +27,9 @@ done
 printf "%d %d * * * bash $PWD/daydark.sh %s > $PWD/daydark.log 2>&1\n" ${times[0]} ${times[1]} ${themes[0]} >>./crontab.bak
 printf "%d %d * * * bash $PWD/daydark.sh %s > $PWD/daydark.log 2>&1\n" ${times[2]} ${times[3]} ${themes[1]} >>./crontab.bak
 
+mkdir -p $HOME/.local/share/systemd/user/
+cp systemd/system/auto_theme.service $HOME/.local/share/systemd/user/
+systemctl --user enable auto_theme
+
 crontab ./crontab.bak
 check_failed $?

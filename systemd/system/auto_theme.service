@@ -1,0 +1,10 @@
+[Unit]
+Description=AutoTheme
+# After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/chen/src/auto_theme/utils/boot_check.sh
+
+[Install]
+WantedBy=default.target
