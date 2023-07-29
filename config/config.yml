@@ -14,22 +14,26 @@ themes:
   - terminator
   - vscode
   # - vim
-  # - spaceVim
+  - spaceVim
   - update_time
 
 gnome:
   theme:
-    light: WhiteSur-light
-    dark: WhiteSur-dark
+    # light: Mojave-light
+    # light: WhiteSur-light
+    light: BigSur-light
+    # dark: Mojave-dark
+    # dark: WhiteSur-dark
+    dark: BigSur-Dark
   cursor:
     light: capitaine-cursors
     dark: capitaine-cursors-light
   shell:
-    light: WhiteSur-light
-    dark: WhiteSur-dark
+    light: WhiteSur-light-solid
+    dark: WhiteSur-dark-solid
   terminal:
-    light: 658cb017-3421-4c58-88e3-08c4ef6c7c8a
-    dark: 6e18f627-29e8-4764-a002-efee8f2fec6f
+    dark: d033acf1-5947-48b4-93cd-b8a15a9af6b6
+    light: 2e87dce9-b00d-4ba2-b1ca-5a207845c298
 
 terminator:
   path: ".config/terminator/config"
@@ -60,5 +64,5 @@ spaceVim:
   path: ".SpaceVim.d/init.toml"
   key_word: colorscheme_bg
   theme:
-    light: " \"light\""
-    dark: " \"dark\""
+    light: ' "light"'
+    dark: ' "dark"'

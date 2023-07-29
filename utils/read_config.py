@@ -20,7 +20,10 @@ class ReadConfig():
             if (self.theme != None):
                 res = res[self.theme]
                 if(self.ld != None):
-                    res = res[self.ld]
+                    try:
+                        res = res[self.ld]
+                    except Exception as e:
+                        print(e)
         return res
 
     def __open_yaml(self):
