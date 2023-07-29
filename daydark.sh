@@ -36,9 +36,8 @@ if [ ! -f .init ]; then
     echo 'initialize crontab'
     $(bash init.sh)
 fi
-function logout() {
-    echo $1 >>daydark.log
-}
+
+source 'utils/log.sh'
 
 function executor() {
     $1 | tee -a daydark.log
@@ -124,7 +123,7 @@ function split_string() {
     IFS=$old_ifs
 }
 
-echo '--------begin--------' >daydark.log
+echo '--------begin--------' >> daydark.log
 get_dbus
 
 set_themes=$(executor "python3 utils/get_themes.py")
